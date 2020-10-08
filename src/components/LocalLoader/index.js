@@ -31,7 +31,7 @@ const Loader = styled.div`
 const LocalLoader = ({ fill }) => {
   return (
     <Loader fill={fill}>
-      <img src={require('../../assets/Logo.png')} alt="loading-icon" />
+      <img src={require('../../assets/logo.png')} alt="loading-icon" />
     </Loader>
   )
 }
