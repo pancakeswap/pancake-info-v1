@@ -73,7 +73,7 @@ const theme = (darkMode, color) => ({
   link: '#2172E5',
   blue: '2f80ed',
 
-  background: darkMode ? 'black' : `radial-gradient(50% 50% at 50% 50%, #4FD8DE30 0%, #fff 0%)`
+  background: darkMode ? 'black' : `radial-gradient(50% 50% at 50% 50%, #4FD8DE 30 0%, #fff 0%)`
 })
 
 const TextWrapper = styled(Text)`
@@ -145,7 +145,8 @@ export const ThemedBackground = styled.div`
   max-width: 100vw !important;
   height: 200vh;
   mix-blend-mode: color;
-  background: ${({ backgroundColor }) => `radial-gradient(50% 50% at 50% 50%, #4FD8DE0%, rgba(255, 255, 255, 0) 100%)`};
+  background: ${({ backgroundColor }) =>
+    `radial-gradient(50% 50% at 50% 50%, ${backgroundColor} 0%, rgba(255, 255, 255, 0) 100%)`};
   position: absolute;
   top: 0px;
   left: 0px;
