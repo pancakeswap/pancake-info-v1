@@ -15,17 +15,17 @@ const theme = (darkMode, color) => ({
   textColor: darkMode ? color : 'black',
 
   panelColor: darkMode ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 0)',
-  backgroundColor: darkMode ? '#212429' : '#F7F8FA',
+  backgroundColor: darkMode ? '#191326' : '#f5f3f3',
 
   // uniswapPink: darkMode ? '#4FD8DE' : 'black',
   uniswapPink: darkMode ? 'red' : 'black',
 
-  concreteGray: darkMode ? '#292C2F' : '#FAFAFA',
-  inputBackground: darkMode ? '#1F1F1F' : '#FAFAFA',
+  concreteGray: darkMode ? '#292C2F' : '#fffdfa',
+  inputBackground: darkMode ? '#1F1F1F' : '#fffdfa',
   shadowColor: darkMode ? '#000' : '#2F80ED',
   mercuryGray: darkMode ? '#333333' : '#E1E1E1',
 
-  text1: darkMode ? '#FAFAFA' : '#1F1F1F',
+  text1: darkMode ? '#fffdfa' : '#1F1F1F',
   text2: darkMode ? '#C3C5CB' : '#565A69',
   text3: darkMode ? '#6C7284' : '#888D9B',
   text4: darkMode ? '#565A69' : '#C3C5CB',
@@ -35,7 +35,7 @@ const theme = (darkMode, color) => ({
   white: '#FFFFFF',
 
   // backgrounds / greys
-  bg1: darkMode ? '#212429' : '#FAFAFA',
+  bg1: darkMode ? '#212429' : '#fffdfa',
   bg2: darkMode ? '#2C2F36' : '#F7F8FA',
   bg3: darkMode ? '#40444F' : '#EDEEF2',
   bg4: darkMode ? '#565A69' : '#CED0D9',
@@ -70,7 +70,7 @@ const theme = (darkMode, color) => ({
   green1: '#27AE60',
   yellow1: '#FFE270',
   yellow2: '#F3841E',
-  link: '#2172E5',
+  link: '#12aab5',
   blue: '2f80ed',
 
   background: darkMode ? 'black' : `radial-gradient(50% 50% at 50% 50%, #4FD8DE 30 0%, #fff 0%)`
@@ -161,14 +161,14 @@ export const GlobalStyle = createGlobalStyle`
   @supports (font-variation-settings: normal) {
     html { font-family: 'Inter var', sans-serif; }
   }
-  
+
   html,
   body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-size: 14px;    
+    font-size: 14px;
     background-color: ${({ theme }) => theme.bg6};
   }
 
@@ -180,7 +180,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  
+
 .three-line-legend {
 	width: 100%;
 	height: 70px;
@@ -215,7 +215,7 @@ export const GlobalStyle = createGlobalStyle`
 
 .tv-lightweight-charts{
   width: 100% !important;
-  
+
 
   & > * {
     width: 100% !important;

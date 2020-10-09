@@ -22,7 +22,6 @@ const Wrapper = styled.div`
   top: 0px;
   z-index: 9999;
   box-sizing: border-box;
-  /* background-color: #1b1c22; */
   background: linear-gradient(193.68deg, #1b1c22 0.68%, #000000 100.48%);
   color: ${({ theme }) => theme.bg2};
 
