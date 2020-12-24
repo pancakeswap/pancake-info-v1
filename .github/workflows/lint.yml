@@ -1,4 +1,4 @@
-name: Build
+name: Lint
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.0
+        uses: actions/setup-node@v2-beta
         with:
           node-version: 12.x
 
@@ -23,4 +23,4 @@ jobs:
         run: yarn install
 
       - name: Run ESLint
-        run: yarn build
+        run: yarn lint

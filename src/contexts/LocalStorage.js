@@ -26,12 +26,12 @@ function reducer(state, { type, payload }) {
   switch (type) {
     case UPDATE_KEY: {
       const { key, value } = payload
-      if (!UPDATABLE_KEYS.some(k => k === key)) {
+      if (!UPDATABLE_KEYS.some((k) => k === key)) {
         throw Error(`Unexpected key in LocalStorageContext reducer: '${key}'.`)
       } else {
         return {
           ...state,
-          [key]: value
+          [key]: value,
         }
       }
     }
@@ -48,7 +48,7 @@ function init() {
     [DISMISSED_PATHS]: {},
     [SAVED_ACCOUNTS]: [],
     [SAVED_TOKENS]: {},
-    [SAVED_PAIRS]: {}
+    [SAVED_PAIRS]: {},
   }
 
   try {
@@ -92,7 +92,7 @@ export function useDarkModeManager() {
   const [state, { updateKey }] = useLocalStorageContext()
   let isDarkMode = state[DARK_MODE]
   const toggleDarkMode = useCallback(
-    value => {
+    (value) => {
       updateKey(DARK_MODE, value === false || value === true ? value : !isDarkMode)
     },
     [updateKey, isDarkMode]
@@ -116,20 +116,25 @@ export function useSavedAccounts() {
   const [state, { updateKey }] = useLocalStorageContext()
   const savedAccounts = state?.[SAVED_ACCOUNTS]
 
-  function addAccount(account) {
-    let newAccounts = state?.[SAVED_ACCOUNTS]
-    newAccounts.push(account)
-    updateKey(SAVED_ACCOUNTS, newAccounts)
-  }
+  const addAccount = useCallback(
+    (account) => {
+      updateKey(SAVED_ACCOUNTS, [...(savedAccounts ?? []), account])
+    },
+    [savedAccounts, updateKey]
+  )
 
-  function removeAccount(account) {
-    let newAccounts = state?.[SAVED_ACCOUNTS]
-    let index = newAccounts.indexOf(account)
-    if (index > -1) {
-      newAccounts.splice(index, 1)
-    }
-    updateKey(SAVED_ACCOUNTS, newAccounts)
-  }
+  const removeAccount = useCallback(
+    (account) => {
+      let index = savedAccounts?.indexOf(account) ?? -1
+      if (index > -1) {
+        updateKey(SAVED_ACCOUNTS, [
+          ...savedAccounts.slice(0, index),
+          ...savedAccounts.slice(index + 1, savedAccounts.length),
+        ])
+      }
+    },
+    [savedAccounts, updateKey]
+  )
 
   return [savedAccounts, addAccount, removeAccount]
 }
@@ -145,7 +150,7 @@ export function useSavedPairs() {
       token0Address,
       token1Address,
       token0Symbol,
-      token1Symbol
+      token1Symbol,
     }
     updateKey(SAVED_PAIRS, newList)
   }
@@ -166,7 +171,7 @@ export function useSavedTokens() {
   function addToken(address, symbol) {
     let newList = state?.[SAVED_TOKENS]
     newList[address] = {
-      symbol
+      symbol,
     }
     updateKey(SAVED_TOKENS, newList)
   }

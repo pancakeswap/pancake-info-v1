@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { useUserTransactions, useUserPositions } from '../contexts/User'
+import { useUserTransactions, useUserPositions, useMiningPositions } from '../contexts/User'
 import TxnList from '../components/TxnList'
 import Panel from '../components/Panel'
 import { formattedNum } from '../utils'
@@ -9,8 +9,9 @@ import { AutoColumn } from '../components/Column'
 import UserChart from '../components/UserChart'
 import PairReturnsChart from '../components/PairReturnsChart'
 import PositionList from '../components/PositionList'
+import MiningPositionList from '../components/MiningPositionList'
 import { TYPE } from '../Theme'
-import { ButtonDropdown } from '../components/ButtonStyled'
+import { ButtonDropdown, ButtonLight } from '../components/ButtonStyled'
 import { PageWrapper, ContentWrapper, StyledIcon } from '../components'
 import DoubleTokenLogo from '../components/DoubleLogo'
 import { Bookmark, Activity } from 'react-feather'
@@ -19,6 +20,7 @@ import { FEE_WARNING_TOKENS } from '../constants'
 import { BasicLink } from '../components/Link'
 import { useMedia } from 'react-use'
 import Search from '../components/Search'
+import { useSavedAccounts } from '../contexts/LocalStorage'
 
 const AccountWrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
@@ -90,6 +92,7 @@ function AccountPage({ account }) {
   // get data for this account
   const transactions = useUserTransactions(account)
   const positions = useUserPositions(account)
+  const miningPositions = useMiningPositions(account)
 
   // get data for user stats
   const transactionCount = transactions?.swaps?.length + transactions?.burns?.length + transactions?.mints?.length
@@ -125,7 +128,7 @@ function AccountPage({ account }) {
 
   const dynamicPositions = activePosition ? [activePosition] : positions
 
-  const aggregateFees = dynamicPositions?.reduce(function(total, position) {
+  const aggregateFees = dynamicPositions?.reduce(function (total, position) {
     return total + position.fees.sum
   }, 0)
 
@@ -144,11 +147,18 @@ function AccountPage({ account }) {
   useEffect(() => {
     window.scrollTo({
       behavior: 'smooth',
-      top: 0
+      top: 0,
     })
   }, [])
 
   const below600 = useMedia('(max-width: 600px)')
+
+  // adding/removing account from saved accounts
+  const [savedAccounts, addAccount, removeAccount] = useSavedAccounts()
+  const isBookmarked = savedAccounts.includes(account)
+  const handleBookmarkClick = useCallback(() => {
+    ;(isBookmarked ? removeAccount : addAccount)(account)
+  }, [account, isBookmarked, addAccount, removeAccount])
 
   return (
     <PageWrapper>
@@ -173,7 +183,10 @@ function AccountPage({ account }) {
             </span>
             <AccountWrapper>
               <StyledIcon>
-                <Bookmark style={{ opacity: 0.4 }} />
+                <Bookmark
+                  onClick={handleBookmarkClick}
+                  style={{ opacity: isBookmarked ? 0.8 : 0.4, cursor: 'pointer' }}
+                />
               </StyledIcon>
             </AccountWrapper>
           </RowBetween>
@@ -295,17 +308,35 @@ function AccountPage({ account }) {
           </TYPE.main>{' '}
           <Panel
             style={{
-              marginTop: '1.5rem'
+              marginTop: '1.5rem',
             }}
           >
             <PositionList positions={positions} />
+          </Panel>
+          <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
+            Liquidity Mining Pools
+          </TYPE.main>
+          <Panel
+            style={{
+              marginTop: '1.5rem',
+            }}
+          >
+            {miningPositions && <MiningPositionList miningPositions={miningPositions} />}
+            {!miningPositions && (
+              <AutoColumn gap="8px" justify="flex-start">
+                <TYPE.main>No Staked Liquidity.</TYPE.main>
+                <AutoRow gap="8px" justify="flex-start">
+                  <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>Learn More</ButtonLight>{' '}
+                </AutoRow>{' '}
+              </AutoColumn>
+            )}
           </Panel>
           <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
             Transactions
           </TYPE.main>{' '}
           <Panel
             style={{
-              marginTop: '1.5rem'
+              marginTop: '1.5rem',
             }}
           >
             <TxnList transactions={transactions} />
@@ -315,7 +346,7 @@ function AccountPage({ account }) {
           </TYPE.main>{' '}
           <Panel
             style={{
-              marginTop: '1.5rem'
+              marginTop: '1.5rem',
             }}
           >
             <AutoRow gap="20px">

@@ -1,9 +1,8 @@
 {
-  "name": "pancakeswap-info",
-  "version": "0.1.0",
+  "name": "@pancakeswap/info",
   "private": true,
   "homepage": "https://pancakeswap.info",
-  "dependencies": {
+  "devDependencies": {
     "@popperjs/core": "^2.4.2",
     "@reach/portal": "^0.10.3",
     "@reach/router": "^1.2.1",
@@ -13,7 +12,6 @@
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.0",
     "@uniswap/token-lists": "^1.0.0-beta.15",
-    "@web3-react/core": "^6.1.1",
     "ajv": "^6.12.4",
     "animated-number-react": "^0.1.1",
     "apollo-cache-inmemory": "^1.6.3",
@@ -35,6 +33,7 @@
     "node-vibrant": "^3.1.5",
     "numeral": "^2.0.6",
     "polished": "^3.4.4",
+    "prettier": "^2.1.2",
     "react": "^16.9.0",
     "react-apollo": "^3.1.1",
     "react-device-detect": "^1.9.10",
@@ -61,9 +60,7 @@
     "typeface-inter": "^3.10.0",
     "typescript": "^3.9.5",
     "unstated": "^2.1.1",
-    "wcag-contrast": "^3.0.0",
-    "web3": "^1.2.11",
-    "web3-react": "^5.0.5"
+    "wcag-contrast": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -94,8 +91,5 @@
       "last 1 safari version"
     ]
   },
-  "license": "GPL-3.0-or-later",
-  "devDependencies": {
-    "prettier": "^1.18.2"
-  }
+  "license": "GPL-3.0-or-later"
 }
