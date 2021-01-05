@@ -7,12 +7,12 @@ export const timeframeOptions = {
   MONTH: '1 month',
   // THREE_MONTHS: '3 months',
   // YEAR: '1 year',
-  ALL_TIME: 'All time'
+  ALL_TIME: 'All time',
 }
 
 // token list urls to fetch tokens from - use for warnings on tokens and pairs
 export const SUPPORTED_LIST_URLS__NO_ENS = [
-  'https://raw.githubusercontent.com/pancakeswap/pancake-swap-interface/master/src/constants/token/pancakeswap.json'
+  'https://raw.githubusercontent.com/pancakeswap/pancake-swap-interface/master/src/constants/token/pancakeswap.json',
 ]
 
 // hide from overview list
@@ -28,7 +28,7 @@ export const OVERVIEW_TOKEN_BLACKLIST = [
   '0x0bd67d358636fd7b0597724aa4f20beedbf3073a',
   '0xedf5d2a561e8a3cb5a846fbce24d2ccd88f50075',
   '0x702b0789a3d4dade1688a0c8b7d944e5ba80fc30',
-  '0x041929a760d7049edaef0db246fa76ec975e90cc'
+  '0x041929a760d7049edaef0db246fa76ec975e90cc',
 ]
 
 // pair blacklist

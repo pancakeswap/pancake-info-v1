@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "uniswap.info site",
+  "Description": "pancakeswap.info site",
   "Outputs": {
     "DeploymentAccessKeyId": {
       "Description": "Access key ID for deploying to the S3 bucket",
@@ -82,12 +82,12 @@
       "Type": "AWS::CertificateManager::Certificate",
       "Description": "The certificate used to secure the CloudFront distribution",
       "Properties": {
-        "DomainName": "uniswap.info",
+        "DomainName": "pancakeswap.info",
         "ValidationMethod": "DNS",
         "Tags": [
           {
             "Key": "Name",
-            "Value": "uniswap.info"
+            "Value": "pancakeswap.info"
           },
           {
             "Key": "Stack",
@@ -241,10 +241,10 @@
               "ResponsePagePath": "/"
             }
           ],
-          "Comment": "uniswap.info",
+          "Comment": "pancakeswap.info",
           "Enabled": true,
           "Aliases": [
-            "uniswap.info"
+            "pancakeswap.info"
           ],
           "DefaultRootObject": "index.html",
           "HttpVersion": "http2",
