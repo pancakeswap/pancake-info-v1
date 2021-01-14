@@ -453,7 +453,7 @@ export const GLOBAL_DATA = (block) => {
 
 export const GLOBAL_TXNS = gql`
   query transactions {
-    transactions(first: 100, orderBy: timestamp, orderDirection: desc) {
+    transactions(first: 50, orderBy: timestamp, orderDirection: desc) {
       mints(orderBy: timestamp, orderDirection: desc) {
         transaction {
           id
