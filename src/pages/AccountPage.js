@@ -356,7 +356,7 @@ function AccountPage({ account }) {
               </AutoColumn>
               <AutoColumn gap="8px">
                 <TYPE.header fontSize={24}>
-                  {totalSwappedUSD ? formattedNum(totalSwappedUSD * 0.003, true) : '-'}
+                  {totalSwappedUSD ? formattedNum(totalSwappedUSD * 0.002, true) : '-'}
                 </TYPE.header>
                 <TYPE.main>Total Fees Paid</TYPE.main>
               </AutoColumn>
