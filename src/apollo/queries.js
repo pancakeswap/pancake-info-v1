@@ -524,7 +524,7 @@ export const GLOBAL_TXNS = gql`
 
 export const ALL_TOKENS = gql`
   query tokens($skip: Int!) {
-    tokens(first: 500, skip: $skip) {
+    tokens(first: 100, skip: $skip) {
       id
       name
       symbol
@@ -602,7 +602,7 @@ export const PAIR_SEARCH = gql`
 
 export const ALL_PAIRS = gql`
   query pairs($skip: Int!) {
-    pairs(first: 500, skip: $skip, orderBy: trackedReserveETH, orderDirection: desc) {
+    pairs(first: 100, skip: $skip, orderBy: trackedReserveETH, orderDirection: desc) {
       id
       token0 {
         id
