@@ -67,7 +67,7 @@ const WarningWrapper = styled.div`
 `
 
 const WarningBanner = styled.div`
-  background-color: #ff6871;
+  background-color: ${({ theme }) => theme.bg1};
   padding: 1.5rem;
   color: white;
   width: 100%;
@@ -110,7 +110,7 @@ function App() {
         {showWarning && (
           <WarningWrapper>
             <WarningBanner>
-              {`Warning: The data on this site has only synced to Binance Smart Chain block ${latestBlock} (out of ${headBlock}). Please check back soon.`}
+              {`The data on this site has only synced to Binance Smart Chain block ${latestBlock} (out of ${headBlock}). Please check back soon.`}
             </WarningBanner>
           </WarningWrapper>
         )}
