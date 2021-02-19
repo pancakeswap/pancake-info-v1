@@ -11,7 +11,7 @@ dayjs.extend(weekOfYear)
 export async function getV1Data() {
   dayjs.extend(utc)
 
-  const utcCurrentTime = dayjs()
+  const utcCurrentTime = dayjs.unix(1613637000)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').unix()
 
