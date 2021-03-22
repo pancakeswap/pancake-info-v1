@@ -74,24 +74,6 @@ export const GET_BLOCKS = (timestamps) => {
   return gql(queryString)
 }
 
-export const POSITIONS_BY_BLOCK = (account, blocks) => {
-  let queryString = 'query blocks {'
-  queryString += blocks.map(
-    (block) => `
-      t${block.timestamp}:liquidityPositions(where: {user: "${account}"}, block: { number: ${block.number} }) { 
-        liquidityTokenBalance
-        pair  {
-          id
-          totalSupply
-          reserveUSD
-        }
-      }
-    `
-  )
-  queryString += '}'
-  return gql(queryString)
-}
-
 export const PRICES_BY_BLOCK = (tokenAddress, blocks) => {
   let queryString = 'query blocks {'
   queryString += blocks.map(
@@ -113,20 +95,6 @@ export const PRICES_BY_BLOCK = (tokenAddress, blocks) => {
   queryString += '}'
   return gql(queryString)
 }
-
-export const TOP_LPS_PER_PAIRS = gql`
-  query lps($pair: Bytes!) {
-    liquidityPositions(where: { pair: $pair }, orderBy: liquidityTokenBalance, orderDirection: desc, first: 10) {
-      user {
-        id
-      }
-      pair {
-        id
-      }
-      liquidityTokenBalance
-    }
-  }
-`
 
 export const HOURLY_PAIR_RATES = (pairAddress, blocks) => {
   let queryString = 'query blocks {'
@@ -194,17 +162,6 @@ export const ETH_PRICE = (block) => {
   return gql(queryString)
 }
 
-export const USER = (block, account) => {
-  const queryString = `
-    query users {
-      user(id: "${account}", block: {number: ${block}}) {
-        liquidityPositions
-      }
-    }
-`
-  return gql(queryString)
-}
-
 export const USER_MINTS_BUNRS_PER_PAIR = gql`
   query events($user: Bytes!, $pair: Bytes!) {
     mints(where: { to: $user, pair: $pair }) {
@@ -234,66 +191,6 @@ export const USER_MINTS_BUNRS_PER_PAIR = gql`
           id
         }
       }
-    }
-  }
-`
-
-export const FIRST_SNAPSHOT = gql`
-  query snapshots($user: Bytes!) {
-    liquidityPositionSnapshots(first: 1, where: { user: $user }, orderBy: timestamp, orderDirection: asc) {
-      timestamp
-    }
-  }
-`
-
-export const USER_HISTORY = gql`
-  query snapshots($user: Bytes!, $skip: Int!) {
-    liquidityPositionSnapshots(first: 1000, skip: $skip, where: { user: $user }) {
-      timestamp
-      reserveUSD
-      liquidityTokenBalance
-      liquidityTokenTotalSupply
-      reserve0
-      reserve1
-      token0PriceUSD
-      token1PriceUSD
-      pair {
-        id
-        reserve0
-        reserve1
-        reserveUSD
-        token0 {
-          id
-        }
-        token1 {
-          id
-        }
-      }
-    }
-  }
-`
-
-export const USER_POSITIONS = gql`
-  query liquidityPositions($user: Bytes!) {
-    liquidityPositions(where: { user: $user }) {
-      pair {
-        id
-        reserve0
-        reserve1
-        reserveUSD
-        token0 {
-          id
-          symbol
-          derivedETH
-        }
-        token1 {
-          id
-          symbol
-          derivedETH
-        }
-        totalSupply
-      }
-      liquidityTokenBalance
     }
   }
 `
@@ -666,30 +563,6 @@ export const PAIR_DATA = (pairAddress, block) => {
         ...PairFields
       }
     }`
-  return gql(queryString)
-}
-
-export const MINING_POSITIONS = (account) => {
-  const queryString = `
-    query users {
-      user(id: "${account}") {
-        miningPosition {
-          id
-          user {
-            id
-          }
-          miningPool {
-              pair {
-                id
-                token0
-                token1
-              }
-          }
-          balance
-        }
-      }
-    }
-`
   return gql(queryString)
 }
 
