@@ -198,8 +198,8 @@ function TopTokenList({ tokens, itemMax = 10 }) {
             <FormattedName text={item.symbol.toUpperCase()} maxCharacters={5} />
           </DataText>
         )}
-        <DataText area="liq">{formattedNum(item.totalLiquidityUSD, true)}</DataText>
-        <DataText area="vol">{formattedNum(item.oneDayVolumeUSD, true)}</DataText>
+        <DataText area="liq">{formattedNum(item.totalLiquidityUSD, true, false)}</DataText>
+        <DataText area="vol">{formattedNum(item.oneDayVolumeUSD, true, false)}</DataText>
         {!below1080 && (
           <DataText area="price" color="text" fontWeight="500">
             {formattedNum(item.priceUSD, true)}

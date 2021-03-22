@@ -60,7 +60,7 @@ const TokenChart = ({ address, color, base }) => {
 
   let chartData = useTokenChartData(address)
 
-  const [timeWindow, setTimeWindow] = useState(timeframeOptions.WEEK)
+  const [timeWindow, setTimeWindow] = useState(timeframeOptions.ALL_TIME)
   const prevWindow = usePrevious(timeWindow)
 
   // hourly and daily price data based on the current time window
