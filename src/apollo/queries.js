@@ -404,13 +404,13 @@ export const ALL_TOKENS = gql`
 
 export const TOKEN_SEARCH = gql`
   query tokens($value: String, $id: String) {
-    asSymbol: tokens(where: { symbol_contains: $value }, orderBy: totalLiquidity, orderDirection: desc) {
+    asSymbol: tokens(where: { symbol: $value }, orderBy: totalLiquidity, orderDirection: desc) {
       id
       symbol
       name
       totalLiquidity
     }
-    asName: tokens(where: { name_contains: $value }, orderBy: totalLiquidity, orderDirection: desc) {
+    asName: tokens(where: { name: $value }, orderBy: totalLiquidity, orderDirection: desc) {
       id
       symbol
       name
