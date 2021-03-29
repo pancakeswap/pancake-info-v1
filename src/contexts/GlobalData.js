@@ -209,7 +209,7 @@ async function getGlobalData(ethPrice, oldEthPrice) {
 
   try {
     // get timestamps for the days
-    const utcCurrentTime = dayjs.unix(1614384000)
+    const utcCurrentTime = dayjs.unix(1614643200)
     const utcOneDayBack = utcCurrentTime.subtract(1, 'day').unix()
     const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').unix()
     const utcOneWeekBack = utcCurrentTime.subtract(1, 'week').unix()
@@ -428,7 +428,7 @@ const getGlobalTransactions = async () => {
  * Gets the current price  of ETH, 24 hour price, and % change between them
  */
 const getEthPrice = async () => {
-  const utcCurrentTime = dayjs.unix(1614384000)
+  const utcCurrentTime = dayjs.unix(1614643200)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
 
   let ethPrice = 0
@@ -457,20 +457,24 @@ const getEthPrice = async () => {
   return [ethPrice, ethPriceOneDay, priceChangeETH]
 }
 
-const PAIRS_TO_FETCH = 500
-const TOKENS_TO_FETCH = 500
+const PAIRS_TO_FETCH = 100
+const TOKENS_TO_FETCH = 200
 
 /**
  * Loop through every pair on uniswap, used for search
  */
 async function getAllPairsOnUniswap() {
+  const utcCurrentTime = dayjs.unix(1614556800)
+  const utcOneHourBack = utcCurrentTime.subtract(1, 'week').startOf('minute').unix()
+  let oneHourBlock = await getBlockFromTimestamp(utcOneHourBack)
+
   try {
     let allFound = false
     let pairs = []
     let skipCount = 0
     while (!allFound) {
       let result = await client.query({
-        query: ALL_PAIRS,
+        query: ALL_PAIRS(oneHourBlock),
         variables: {
           skip: skipCount,
         },
