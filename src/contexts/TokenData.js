@@ -193,7 +193,7 @@ export default function Provider({ children }) {
 }
 
 const getTopTokens = async (ethPrice, ethPriceOld) => {
-  const utcCurrentTime = dayjs.unix(1614384000)
+  const utcCurrentTime = dayjs.unix(1614772800)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').unix()
   let oneDayBlock = await getBlockFromTimestamp(utcOneDayBack)
@@ -318,7 +318,7 @@ const getTopTokens = async (ethPrice, ethPriceOld) => {
 }
 
 const getTokenData = async (address, ethPrice, ethPriceOld) => {
-  const utcCurrentTime = dayjs.unix(1614384000)
+  const utcCurrentTime = dayjs.unix(1614772800)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').startOf('minute').unix()
   let oneDayBlock = await getBlockFromTimestamp(utcOneDayBack)
