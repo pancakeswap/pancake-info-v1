@@ -49,7 +49,7 @@ const CandleStickChart = ({
 
   if (formattedData && formattedData.length > 0) {
     formattedData.push({
-      time: dayjs.unix(1614772800).unix(),
+      time: dayjs.unix(1616025600).unix(),
       open: parseFloat(formattedData[formattedData.length - 1].close),
       close: parseFloat(base),
       low: Math.min(parseFloat(base), parseFloat(formattedData[formattedData.length - 1].close)),
