@@ -1,6 +1,6 @@
 {
-  "short_name": "Pancakeswap Info",
-  "name": "View statistics for Pancakeswap exchanges.",
+  "short_name": "RiceFarm Info",
+  "name": "View statistics for RiceFarm exchanges.",
   "icons": [
     {
       "src": "favicon.png",
@@ -9,7 +9,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
+  "display": "standalone"
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }

@@ -1,6 +1,6 @@
 # Pancake History
 
-Check it out live: [https://pancakeswap.info/](https://pancakeswap.info/).
+Check it out live: [https://ricefarm.info/](https://ricefarm.info/).
 
 ### To Start Development
 
